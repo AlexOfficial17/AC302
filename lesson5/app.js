@@ -20,12 +20,12 @@ function init(){
     return setInterval(draw, 10);
 }
 
-function circle(x,y,r){
+function circle(x,y,r,color){
 	ctx.beginPath();
 	ctx.arc(x,y,r,0, 6.28);
 	ctx.closePath();
 	ctx.stroke();
-	ctx. fillStyle = "red";
+	ctx. fillStyle = color;
 	ctx.fill();
 }
 
@@ -37,16 +37,16 @@ function clear(){
 //draw frames
 function draw(){
 	clear();
-	circle(x,y,30);
+	circle(x,y,30,circleColor);
 
 	if(x+mx <0 || x+mx>600){
 		 mx = -mx;
-
+         circleColor = randomColor();
 	}
 
 	if(y+my <0 || y+my>400){
 		 my = -my;
-
+         circleColor = randomColor();
 	}
     //move the shape
     x += mx;
@@ -55,3 +55,14 @@ function draw(){
 }
 
 init();
+
+//challenge color
+var circleColor = "rgb(255,0,0)";
+
+//challenge random color
+function randomColor(){
+	var r = Math.floor(Math.random()*255);
+	var g = Math.floor(Math.random()*255);
+	var b = Math.floor(Math.random()*255);
+	return "rgb(" + r + "," + g + "," + b +")";
+}
